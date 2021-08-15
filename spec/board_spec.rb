@@ -13,5 +13,9 @@ describe Board do
     it 'has a title' do
       expect(@board.title).to eq @title
     end
+
+    it 'contains an empty list of messages' do
+      expect(@board.messages).to eq []
+    end
   end
 end

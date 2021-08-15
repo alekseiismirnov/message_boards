@@ -7,4 +7,8 @@ class Board
   def initialize(params)
     @title = params[:title]
   end
+
+  def messages
+    []
+  end
 end
