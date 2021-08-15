@@ -4,6 +4,7 @@ require 'board'
 
 describe Board do
   before :all do
+    Board.clear
     @title = 'Board To save'
     @board = Board.new(title: @title)
   end

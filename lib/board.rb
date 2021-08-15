@@ -4,8 +4,7 @@
 class Board
   attr_reader :title, :id
 
-  @boards = {}
-  @last_id = 0
+
 
   def initialize(params)
     @title = params[:title]
@@ -24,6 +23,11 @@ class Board
     @last_id += 1
   end
 
+  def self.clear
+    @boards = {}
+    @last_id = 0
+  end
+
   def clone
     self.class.new(title: @title, id: @id)
   end
@@ -38,5 +42,9 @@ class Board
 
   def ==(other)
     @title = other.title
+  end
+
+  def <=>(other)
+    @title <=> other
   end
 end
