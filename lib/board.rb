@@ -8,7 +8,12 @@ class Board
     @title = params[:title]
   end
 
+  def self.all
+    []
+  end
+
   def messages
     []
   end
+
 end
