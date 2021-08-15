@@ -14,13 +14,17 @@ describe Board do
     end
   end
 
-  context 'board is saved' do
+  context 'one board is saved' do
     before :all do
       @board.save
     end
 
     it 'list of all boards has length 1' do
       expect(Board.all.length).to eq 1
+    end
+
+    it 'saved board is in returned list' do
+      expect(Board.all.first).to eq @board
     end
   end
 end

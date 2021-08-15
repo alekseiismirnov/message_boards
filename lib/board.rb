@@ -35,4 +35,8 @@ class Board
   def save
     self.class.save_me self
   end
+
+  def ==(other)
+    @title = other.title
+  end
 end
