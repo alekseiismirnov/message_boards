@@ -4,8 +4,6 @@
 class Board
   attr_reader :title, :id
 
-
-
   def initialize(params)
     @title = params[:title]
     @id = params[:id] || self.class.free_id
