@@ -36,4 +36,9 @@ class Message
   def clone
     self.class.new(text: text, id: id)
   end
+
+  def update(params)
+    @text = params[:text] if params[:text]
+    save
+  end
 end
