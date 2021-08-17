@@ -4,9 +4,13 @@
 class Board
   attr_reader :title, :id
 
+  @boards = {}
+  @last_id = 0
+
   def initialize(params)
     @title = params[:title]
     @id = params[:id] || self.class.free_id
+    @message_ids = []
   end
 
   def self.all
@@ -31,7 +35,7 @@ class Board
   end
 
   def messages
-    []
+    @message_ids.map { |id| Message.find id}
   end
 
   def save
@@ -43,6 +47,13 @@ class Board
   end
 
   def <=>(other)
-    @title <=> other
+    @title <=> other.title
+  end
+
+  def save_message(text)
+    message = Message.new(text: text)
+    message.save
+
+    @message_ids << message.id
   end
 end
