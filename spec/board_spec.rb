@@ -27,6 +27,10 @@ describe Board do
       it '#messages returns list with one message' do
         expect(@board.messages.length).to eq 1
       end
+
+      it 'text of the message is correct' do
+        expect(@board.messages.first.text).to eq @text
+      end
     end
   end
 end
