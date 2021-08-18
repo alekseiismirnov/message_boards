@@ -9,13 +9,13 @@ describe Message do
     @message.save
   end
 
-  context 'with default construction' do
+  context 'with default constructor' do
     it 'contains a text' do
       expect(@message.text).to eq @text
     end
 
     it 'text can be updated' do
-      @updated_text = 'New text'
+      @updated_text = 'New text' 
       @message.update(text: @updated_text)
       expect(Message.find(@message.id).text).to eq @updated_text
     end

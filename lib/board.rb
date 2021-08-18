@@ -10,7 +10,7 @@ class Board
   def initialize(params)
     @title = params[:title]
     @id = params[:id] || self.class.free_id
-    @message_ids = []
+    @message_ids = params[:message_ids] || []
   end
 
   def self.all
@@ -30,12 +30,20 @@ class Board
     @last_id = 0
   end
 
+  def self.find(id)
+    @boards[id].clone
+  end
+
   def clone
-    self.class.new(title: @title, id: @id)
+    self.class.new(
+      title: @title,
+      id: @id,
+      message_ids: @message_ids.clone
+    )
   end
 
   def messages
-    @message_ids.map { |id| Message.find id}
+    @message_ids.map { |id| Message.find id }
   end
 
   def save
