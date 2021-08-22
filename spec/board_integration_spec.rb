@@ -10,7 +10,7 @@ set(show_exception: false)
 Capybara.save_path = '~/tmp'
 
 describe('Boards list', type: :feature) do
-  before :all do
+  before :each do
     visit '/boards'
   end
 
@@ -18,6 +18,12 @@ describe('Boards list', type: :feature) do
     it 'there is a title' do
       within 'h1' do
         expect(page).to have_content 'Boards list'
+      end
+    end
+
+    it 'there is `no boards` sign' do
+      within '.boards' do
+        expect(page).to have_content 'No boards yet'
       end
     end
   end
