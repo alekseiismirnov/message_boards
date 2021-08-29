@@ -1,5 +1,12 @@
 <h1>Boards list</h1>
-
-<div class="boards">
-  No boards yet
+<div class="boards_portal">
+  <% if @boards.empty? %>
+    <p>No boards yet</p>
+  <% else %>
+    <ul>
+      <% @boards.each do |board| %>
+        <li><%= board[:title]%></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

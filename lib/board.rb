@@ -64,4 +64,10 @@ class Board
 
     @message_ids << message.id
   end
+
+  def to_json(*_args)
+    {
+      title: title
+    }
+  end
 end
