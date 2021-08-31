@@ -34,7 +34,13 @@ describe('Message board', type: :feature) do
     expect(page).to have_title board.title
   end
 
-  it 'has `no messages` sign if has no messages'
+  it 'has `no messages` sign if has no messages' do
+    visit "/boards/#{@bbs.empty_board_index}"
+
+    within('.messages') do
+      expect(page).to have_content 'No messages yet'
+    end
+  end
   it 'has messages created on it'
   it 'has no messages from other boards'
 end
