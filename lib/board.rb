@@ -67,7 +67,8 @@ class Board
 
   def to_json(*_args)
     {
-      title: title
+      title: title,
+      id: id
     }
   end
 end

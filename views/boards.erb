@@ -5,7 +5,11 @@
   <% else %>
     <ul>
       <% @boards.each do |board| %>
-        <li><%= board[:title]%></li>
+        <li>
+          <a href="/boards/<%= board[:id] %>" >
+            <%= board[:title] %>
+          </a>
+        </li>
       <% end %>
     </ul>
   <% end %>

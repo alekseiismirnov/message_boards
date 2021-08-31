@@ -21,3 +21,10 @@ get '/start' do
 
   redirect '/boards'
 end
+
+get '/boards/:id' do
+  
+  @data = Board.find(params[:id].to_i).to_json
+  
+  erb :board
+end
