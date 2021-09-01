@@ -6,7 +6,7 @@ require './app'
 require 'board'
 require 'message'
 
-require 'dummy/boards_and_messages'
+require 'boards_and_messages'
 
 Capybara.app = Sinatra::Application
 set(show_exception: false)
@@ -37,10 +37,20 @@ describe('Message board', type: :feature) do
   it 'has `no messages` sign if has no messages' do
     visit "/boards/#{@bbs.empty_board_index}"
 
-    within('.messages') do
+    within '.messages' do
       expect(page).to have_content 'No messages yet'
     end
   end
-  it 'has messages created on it'
+
+  it 'has messages saved on it' do
+    board = @bbs.boards.first
+    messages = board.messages.map(&:text)
+
+    visit "/boards/#{board.id}"
+    within '.messages' do
+      expect(page.all(class: 'message').map(&:text)).to match_array messages
+    end
+  end
+
   it 'has no messages from other boards'
 end

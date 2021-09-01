@@ -16,6 +16,7 @@ describe Board do
 
   context 'board is not saved' do
     it 'list of all boards is empty' do
+      Board.clear
       expect(Board.all).to eq []
     end
   end
@@ -29,11 +30,11 @@ describe Board do
       expect(Board.all.length).to eq 1
     end
 
-    it 'saved board is in returned list' do
+    it 'is in returned list' do
       expect(Board.all.first).to eq @board
     end
 
-    it 'board saved board contains messages' do
+    it 'contains messages' do
       board = Board.find @board.id
 
       expect(board.messages.map(&:text).sort).to eq [@some_mess, @other_mess].sort

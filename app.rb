@@ -4,7 +4,8 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'
 
-require './lib/board'
+require_relative 'lib/board.rb'
+require_relative 'lib/boards_and_messages.rb'
 
 also_reload 'lib/**/*.rb'
 
@@ -16,15 +17,15 @@ end
 
 get '/start' do
   Board.clear
-  @board_titles = ('a'..'g').map { |code| "Board /#{code}/" }
-  @board_titles.each { |title| Board.new(title: title).save }
+  BBS.new(boards_number: 5, messages_number: 10)
 
   redirect '/boards'
 end
 
 get '/boards/:id' do
-  
-  @data = Board.find(params[:id].to_i).to_json
-  
+  board = Board.find(params[:id].to_i)
+  @data = board.to_json
+  @messages_text = board.messages.map(&:text)
+
   erb :board
 end

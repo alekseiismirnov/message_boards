@@ -2,8 +2,8 @@
 
 require 'humanize'
 
-require 'board'
-require 'message'
+require_relative 'board'
+require_relative 'message'
 
 # it retns boards with messages, one empty, and inital data
 class BBS
@@ -21,7 +21,6 @@ class BBS
       board_data[:messages].each do |text|
         board.save_message text
       end
-      
       board
     end
   end

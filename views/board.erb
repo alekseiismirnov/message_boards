@@ -3,6 +3,14 @@
 </head>
 <body>
 <html>
-  <div class="messages">No messages yet</div>
+  <div class="messages">
+    <% if @messages_text.empty? %>
+      <div class="no-messages">No messages yet</div> 
+    <% else %>
+      <% @messages_text.each do |text| %>
+        <div class="message"> <%= text %> </div>
+      <% end %>
+    <% end %>
+  </div>
 </html>
 </body>

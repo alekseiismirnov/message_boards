@@ -63,12 +63,15 @@ class Board
     message.save
 
     @message_ids << message.id
+
+    save
   end
 
   def to_json(*_args)
     {
       title: title,
-      id: id
+      id: id,
+      message_ids: @message_ids.clone
     }
   end
 end
