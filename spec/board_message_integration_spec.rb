@@ -15,7 +15,7 @@ Capybara.save_path = '~/tmp'
 
 describe('Message board', type: :feature) do
   before :all do
-    @bbs = BBS.new(boards_number: 5, messages_number: 10) 
+    @bbs = BBS.new(boards_number: 5, messages_number: 10)
   end
 
   it 'is accessible from the boards list' do
@@ -51,6 +51,4 @@ describe('Message board', type: :feature) do
       expect(page.all(class: 'message').map(&:text)).to match_array messages
     end
   end
-
-  it 'has no messages from other boards'
 end
