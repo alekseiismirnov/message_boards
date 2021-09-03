@@ -11,7 +11,7 @@ describe 'Message search' do
   end
 
   context 'if no messages' do
-    it 'return empty array' do
+    it 'returns empty array' do
       search_result = @bbs
                       .empty_board
                       .search_messages('sample text')
