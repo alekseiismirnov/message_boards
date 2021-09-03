@@ -17,7 +17,7 @@ end
 
 get '/start' do
   Board.clear
-  BBS.new(boards_number: 5, messages_number: 10)
+  BBS.new(boards_number: 5, messages_number: 20)
 
   redirect '/boards'
 end
