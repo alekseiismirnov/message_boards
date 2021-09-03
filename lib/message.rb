@@ -29,6 +29,15 @@ class Message
     @my_objects[id].clone
   end
 
+  def self.search(params)
+    pattern = params[:text]
+    within = params[:within]
+
+    (@my_objects.values_at(*within) | @my_objects.values)
+      .select { |message| message.text.include?(pattern) }
+      .map(&:id)
+  end
+
   def save
     self.class.save_me self
   end

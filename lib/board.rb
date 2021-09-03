@@ -74,4 +74,8 @@ class Board
       message_ids: @message_ids.clone
     }
   end
+
+  def search_messages(text)
+    Message.search(text: text, within: @message_ids)
+  end
 end
