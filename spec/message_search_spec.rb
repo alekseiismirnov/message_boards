@@ -32,7 +32,7 @@ describe 'Message search' do
       expect(@board.search_messages(@for_none)).to eq []
     end
 
-    it 'finds all messages for matched to all' do 
+    it 'finds all messages for matched to all' do
       expect(@board.search_messages(@for_all).length).to eq 19
     end
 
