@@ -29,3 +29,10 @@ get '/boards/:id' do
 
   erb :board
 end
+
+get '/finds' do
+  # FIXME
+  @finds = []
+
+  erb :finds
+end
