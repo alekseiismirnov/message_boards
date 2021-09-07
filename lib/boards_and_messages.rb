@@ -28,7 +28,7 @@ class BBS
   def empty_board
     @boards[@empty_board_index]
   end
-  
+
   private
 
   def make_dummy_data(boards_number, messages_number)

@@ -34,6 +34,19 @@ class Board
     @boards[id].clone
   end
 
+  def self.search_messages(search_pattern)
+    Board.all.map do |board|
+      found_message_ids = board.search_messages(search_pattern)
+      next if found_message_ids.empty?
+
+      {
+        title: board.title,
+        messages: found_message_ids
+      }
+    end
+         .reject(&:nil?)
+  end
+
   def clone
     self.class.new(
       title: @title,

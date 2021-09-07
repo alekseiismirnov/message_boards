@@ -31,8 +31,13 @@ get '/boards/:id' do
 end
 
 get '/finds' do
-  # FIXME
-  @finds = []
+  search_pattern = params[:'search-message']
+  @finds = Board.search_messages(search_pattern).map do |record|
+    {
+      title: record[:title],
+      messages: record[:messages].map { |id| Message.find(id).text }
+    }
+  end
 
   erb :finds
 end

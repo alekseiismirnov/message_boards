@@ -19,27 +19,49 @@ describe('Messages search', type: :feature) do
 
   end
 
-  context 'Board list page' do
+  context 'at board list page' do
     it 'there is a message search field on it' do
       visit '/boards'
 
       within '.footer' do
-        expect(page).to have_field('Search Message', type: 'text')
+        expect(page).to have_field('search-message', type: 'text')
       end
     end
   end
 
-  context 'Search result page' do
+  context 'at search result page' do
     it 'there is `nothing found` for unfoundable pattern' do
       visit '/boards'
-      fill_in 'Search Message',	with: @for_none
+      fill_in 'search-message',	with: @for_none
       click_button 'Search Message'
 
       within '.search-results' do
         expect(page).to have_content 'Nothing found'
       end
     end
-    it 'there are boards with founded messages'
-    it 'there are messages with foundable pattern'
+
+    it 'there are board titles with found messages if any' do
+      visit '/boards'
+      fill_in 'search-message',	with: @for_all
+      click_button 'Search Message'
+
+      within '.search-results' do
+        @bbs.bbs_data.map { |board| board[:title] }.each do |title|
+          expect(page).to have_content title
+        end
+      end
+    end
+
+    it 'there are found messages if any' do
+      visit '/boards'
+      fill_in 'search-message',	with: @for_all
+      click_button 'Search Message'
+
+      within '.search-results' do
+        @bbs.bbs_data.map { |board| board[:messages] }.flatten.each do |message|
+          expect(page).to have_content message
+        end
+      end
+    end
   end
 end

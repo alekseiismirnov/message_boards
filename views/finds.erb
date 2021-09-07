@@ -1,3 +1,16 @@
-<div class = "search-results">
-  Nothing found
+<div class="search-results">
+<% if @finds.empty?%>
+  <div class="nothing-message">Nothing found</div>
+<% else %>
+  <% @finds.each do |record| %>
+    <div class="found-board-title">
+      <%= record[:title] %>
+    </div>
+    <% record[:messages].each do |message| %>
+      <div class="found-messages">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
 </div>
