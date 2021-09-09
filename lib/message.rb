@@ -33,7 +33,7 @@ class Message
     pattern = params[:text]
     within = params[:within]
 
-    (within.empty? ? @my_objects.values : @my_objects.values_at(*within))
+    (within.nil? ? @my_objects.values : @my_objects.values_at(*within))
       .select { |message| message.text.include?(pattern) }
       .map(&:id)
   end

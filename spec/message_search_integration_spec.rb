@@ -16,7 +16,6 @@ describe('Messages search', type: :feature) do
     @bbs = BBS.new(boards_number: 15, messages_number: 21)
     @for_all = 'in my opinion it should be:'
     @for_none = 'RNAb2 3E9E Vp. 1cNV0u D emgE2U'
-
   end
 
   context 'at board list page' do
@@ -46,7 +45,9 @@ describe('Messages search', type: :feature) do
       click_button 'Search Message'
 
       within '.search-results' do
-        @bbs.bbs_data.map { |board| board[:title] }.each do |title|
+        @bbs.boards
+            .reject { |board| board.messages.empty? }
+            .map(&:title).each do |title|
           expect(page).to have_content title
         end
       end
