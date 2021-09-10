@@ -47,7 +47,7 @@ get '/finds/boards' do
   search_pattern = params[:'search-board']
   @finds = Board.search(title: search_pattern).map do |id|
     {
-      title: Board.find(id).board.title
+      title: Board.find(id).title
     }
   end
 
