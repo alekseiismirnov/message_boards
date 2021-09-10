@@ -47,6 +47,15 @@ class Board
          .reject(&:nil?)
   end
 
+  def self.search(params)
+    # only for titles, obviously
+    pattern = params[:title]
+
+    Board.all
+         .select { |board| board.title.include?(pattern) }
+         .map(&:id)
+  end
+
   def clone
     self.class.new(
       title: @title,
