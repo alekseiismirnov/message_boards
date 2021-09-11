@@ -5,13 +5,14 @@
     <% @finds.each do |record| %>
       <div class="found-board-title">
         <%= record[:title] %>
+        <%= record[:messages] %>
       </div>
-      <% unless record[:messages].nil? do %>
+      <% unless record[:messages].nil? %>
         <% record[:messages].each do |message| %>
           <div class="found-messages">
             <%= message %>
           </div>
-        <% end %>
+
       <% end %>
     <% end %>
   <% end %>
