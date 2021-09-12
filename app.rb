@@ -26,7 +26,7 @@ end
 get '/boards/:id' do
   board = Board.find(params[:id].to_i)
   @data = board.to_json
-  @messages_text = board.messages.map(&:text)
+  @messages = board.messages.map(&:to_json)
 
   erb :board
 end
@@ -52,4 +52,13 @@ get '/finds/boards' do
   end
 
   erb :finds
+end
+
+patch '/boards/:board_id/messages/:id/update' do
+  id = params[:id].to_i
+  text = params[:message]
+
+  Message.find(id).update(text: text)
+
+  redirect "/boards/#{params[:board_id]}"
 end

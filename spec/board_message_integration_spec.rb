@@ -48,7 +48,7 @@ describe('Message board', type: :feature) do
 
     visit "/boards/#{board.id}"
     within '.messages' do
-      expect(page.all(class: 'message').map(&:text)).to match_array messages
+      expect(page.all(class: 'message-text').map(&:text)).to match_array messages
     end
   end
 end

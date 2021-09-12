@@ -50,4 +50,11 @@ class Message
     @text = params[:text] if params[:text]
     save
   end
+
+  def to_json(*_args)
+    {
+      id: @id,
+      text: @text
+    }
+  end
 end
