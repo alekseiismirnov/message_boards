@@ -2,12 +2,13 @@
 
 # titled container for messages
 class Board
-  attr_reader :title, :id
+  attr_reader :title, :id, :timestamp
 
   @boards = {}
   @last_id = 0
 
   def initialize(params)
+    @timestamp = Time.new
     @title = params[:title]
     @id = params[:id] || self.class.free_id
     @message_ids = params[:message_ids] || []
@@ -58,6 +59,7 @@ class Board
 
   def clone
     self.class.new(
+      timestamp: @timestamp,
       title: @title,
       id: @id,
       message_ids: @message_ids.clone
@@ -91,6 +93,7 @@ class Board
 
   def to_json(*_args)
     {
+      timestamp: timestamp,
       title: title,
       id: id,
       message_ids: @message_ids.clone

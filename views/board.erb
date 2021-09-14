@@ -3,6 +3,12 @@
 </head>
 <body>
 <html>
+<div class="sort-block">
+<form class="by-timestamp" action="/boards/<%= @data[:id] %>" method="get">
+<input name="timestamp-sort" value="newest" type="hidden" >
+<button type="submit">Newest first</button>
+</form>
+</div>
   <div class="messages">
     <% if @messages.empty? %>
       <div class="no-messages">No messages yet</div> 

@@ -10,7 +10,10 @@ require_relative 'lib/boards_and_messages.rb'
 also_reload 'lib/**/*.rb'
 
 get '/boards' do
+  timestamp_sort = params[:timestamp_sort]
   @boards = Board.all.map(&:to_json)
+  @boards.sort! { |a, b| b[:timestamp] <=> a[:timestamp] } if timestamp_sort == 'newest'
+  @boards.sort! { |a, b| a[:timestamp] <=> b[:timestamp] } if timestamp_sort == 'oldest'
 
   erb :boards
 end
@@ -25,8 +28,11 @@ end
 
 get '/boards/:id' do
   board = Board.find(params[:id].to_i)
+  timestamp_sort = params[:timestamp_sort]
   @data = board.to_json
   @messages = board.messages.map(&:to_json)
+  @messages.sort! { |a, b| a[:timestamp] <=> b[:timestamp] } if timestamp_sort == 'oldest'
+  @messages.sort! { |a, b| b[:timestamp] <=> a[:timestamp] } if timestamp_sort == 'newest'
 
   erb :board
 end

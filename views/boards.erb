@@ -1,8 +1,22 @@
 <h1>Boards list</h1>
+
 <div class="boards_portal">
   <% if @boards.empty? %>
     <p>No boards yet</p>
   <% else %>
+  <div class="sort-block">
+
+<form class="by-timestamp" action="/boards" method="get">
+<input name="timestamp_sort" value="newest" type="hidden" >
+<button type="submit">Newest first</button>
+</form>
+
+<form class="by-timestamp" action="/boards" method="get">
+<input name="timestamp_sort" value="oldest" type="hidden" >
+<button type="submit">Oldest first</button>
+</form>
+
+</div>
     <ul>
       <% @boards.each do |board| %>
         <li>
