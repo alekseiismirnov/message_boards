@@ -18,9 +18,7 @@ class BBS
     @boards = @bbs_data.map do |board_data|
       board = Board.new(title: board_data[:title])
       board.save
-      board_data[:messages].each do |text|
-        board.save_message text
-      end
+      board_data[:messages].each { |text| board.save_message text }
       board
     end
   end

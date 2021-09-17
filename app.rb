@@ -28,7 +28,7 @@ end
 
 get '/boards/:id' do
   board = Board.find(params[:id].to_i)
-  timestamp_sort = params[:timestamp_sort]
+  timestamp_sort = params[:'timestamp-sort']
   @data = board.to_json
   @messages = board.messages.map(&:to_json)
   @messages.sort! { |a, b| a[:timestamp] <=> b[:timestamp] } if timestamp_sort == 'oldest'
