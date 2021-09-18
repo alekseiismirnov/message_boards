@@ -56,10 +56,9 @@ describe('Sort', type: :feature) do
 
     # this is even worse test, good only for check if there is a button
     # and press on it doesn't ruin everything
-    xit 'can be sorted from newest to oldest' do
+    it 'can be sorted from newest to oldest' do
       click_button 'Oldest first'
-      titles = all('li').map(&:text)
-      expect(titles).to eq @bbs.boards.map(&:title)
+      expect(all('.message-text').map(&:text)).to eq @titles
     end
   end
 end

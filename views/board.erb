@@ -8,6 +8,13 @@
 <input name="timestamp-sort" value="newest" type="hidden" >
 <button type="submit">Newest first</button>
 </form>
+
+<div class="sort-block">
+<form class="by-timestamp" action="/boards/<%= @data[:id] %>" method="get">
+<input name="timestamp-sort" value="oldest" type="hidden" >
+<button type="submit">Oldest first</button>
+</form>
+
 </div>
   <div class="messages">
     <% if @messages.empty? %>
