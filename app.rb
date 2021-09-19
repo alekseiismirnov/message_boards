@@ -9,6 +9,18 @@ require_relative 'lib/boards_and_messages.rb'
 
 also_reload 'lib/**/*.rb'
 
+enable :sessions
+
+before do
+  @session_admin = session[:admin]
+end
+
+get '/login' do
+  session[:admin] = true
+
+  redirect '/boards'
+end
+
 get '/boards' do
   timestamp_sort = params[:timestamp_sort]
   @boards = Board.all.map(&:to_json)
