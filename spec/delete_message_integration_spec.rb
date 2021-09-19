@@ -14,6 +14,11 @@ set(show_exception: false)
 Capybara.save_path = '~/tmp'
 
 describe('Delete', type: :feature) do
+  before :all do
+    visit '/boards'
+    click_on 'Login'
+  end
+
   context 'board page' do
     before :each do
       Board.clear
