@@ -18,6 +18,7 @@ describe('Messages update', type: :feature) do
     @message_new = 'Something compleatly different'
 
     visit '/boards'
+    click_on 'Login'
     click_on 'This is the board #2'
 
     within page.find('.message', text: @message_to_change) do

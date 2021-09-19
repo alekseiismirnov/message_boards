@@ -15,6 +15,14 @@ before do
   @session_admin = session[:admin]
 end
 
+error 401 do
+   'You must be logged' 
+end
+
+get '/rise401' do
+  halt 401
+end
+
 get '/login' do
   session[:admin] = true
 
@@ -73,6 +81,8 @@ get '/finds/boards' do
 end
 
 patch '/boards/:board_id/messages/:id/update' do
+  halt 401 unless session[:admin]
+
   id = params[:id].to_i
   text = params[:message]
 
@@ -86,5 +96,6 @@ delete '/boards/:board_id/messages/:id' do
   id = params[:id].to_i
   Board.find(board_id).delete_message(id)
 
+  @flash = "That's fine"
   redirect "/boards/#{board_id}"
 end
