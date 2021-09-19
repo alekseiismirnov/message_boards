@@ -68,3 +68,11 @@ patch '/boards/:board_id/messages/:id/update' do
 
   redirect "/boards/#{params[:board_id]}"
 end
+
+delete '/boards/:board_id/messages/:id' do
+  board_id = params[:board_id].to_i
+  id = params[:id].to_i
+  Board.find(board_id).delete_message(id)
+
+  redirect "/boards/#{board_id}"
+end

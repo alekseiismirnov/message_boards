@@ -103,4 +103,11 @@ class Board
   def search_messages(text)
     Message.search(text: text, within: @message_ids)
   end
+
+  def delete_message(id)
+    @message_ids.delete id
+    Message.delete id
+
+    save
+  end
 end

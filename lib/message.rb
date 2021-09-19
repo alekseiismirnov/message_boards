@@ -39,6 +39,10 @@ class Message
       .map(&:id)
   end
 
+  def self.delete(id)
+    @my_objects.delete(id)
+  end
+
   def save
     self.class.save_me self
   end
